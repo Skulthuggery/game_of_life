@@ -1,6 +1,6 @@
 """Contains functions for the game grid."""
 
-# def initialize_grid():
+import tkinter
 
 
 # def reset_grid():
