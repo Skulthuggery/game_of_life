@@ -13,7 +13,7 @@ def program_start():
     gui.title("Game of Life")
     gui.geometry("1920x1080")
     # Grid settings
-    grd.set_grid(gui)
+    grd.set_grid()
     # Button settings
     seed_button = tk.Button(gui, text="Seed", width=25)
     seed_button.place(x=300, y=950)
