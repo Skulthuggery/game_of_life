@@ -2,6 +2,9 @@
 
 import tkinter as tk
 
+game_grid_list = []
+game_grid_dict = {}
+
 class GameCell:
     """models the cells used in the Game of Life."""
     def __init__(self, alive=False, color="white"):
@@ -12,8 +15,6 @@ class GameCell:
         self.button = tk.Button(bg=color, command=self.set_seed)
 
     def set_grid():
-        game_grid_list = []
-        game_grid_dict = {}
         for num_c in range(66):
             for num_r in range(30):
                 game_cell = GameCell()
@@ -22,7 +23,6 @@ class GameCell:
                 game_grid_list.append(game_cell)
                 game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num}"] = game_cell.alive
                 game_cell.button.grid(column=num_c, row=num_r)
-
 
     def set_seed(self):
         """Allows user to click a cell to change its color from white (dead) to black (alive) and vice versa."""
@@ -33,7 +33,7 @@ class GameCell:
             self.alive = False
             self.button["bg"] = "white"
 
-    def get_neighbor_status(self):
+    def start_generations(self):
         print("test")
         # for self.button in gui:
     
