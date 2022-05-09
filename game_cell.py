@@ -35,5 +35,61 @@ class GameCell:
 
     def start_generations(self):
         print("test")
-        # for self.button in gui:
+        # self.get_neighbor_status(self, game_grid_list, game_grid_dict)
+        # self.new_generation(self, alive_neighbors)
     
+    def get_neighbor_status(self, game_grid_list, game_grid_dict):
+        """For each cell in game_cell_list, checks its neighboring cells to determine if its alive then increments alive_neighbors if so, then calls new_generation() method"""
+        alive_neighbors = 0
+        for game_cell in game_grid_list:
+            """North-West Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num - 1}"] == True:
+                alive_neighbors += 1
+            else: pass
+            """North Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num - 1}"] == True:
+                alive_neighbors += 1
+            else: pass
+            """North-East Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num - 1}"] == True:
+                alive_neighbors += 1
+            else: pass
+            """West Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num}"] == True:
+                alive_neighbors += 1
+            else: pass
+            """East Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num}"] == True:
+                alive_neighbors += 1
+            else: pass
+            """South-West Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num + 1}"] == True:
+                alive_neighbors += 1
+            else: pass
+            """South Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num + 1}"] == True:
+                alive_neighbors += 1
+            else: pass
+            """South-East Neighbor"""
+            if game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num + 1}"] == True:
+                alive_neighbors += 1
+            else: pass
+        game_cell.new_generation(self, alive_neighbors)
+
+        def new_generation(self, alive_neighbors):
+            """Checks how many neighbors are alive, then sets the active cell to either 'alive' or 'dead' based on the number of alive neighbor cells.
+            The active cell's button color is changed appropriately."""
+            if self.alive == True:
+                if alive_neighbors <= 1:
+                    self.alive = False
+                    self.button["bg"] = "white"
+                elif alive_neighbors > 1 and alive_neighbors <= 3:
+                    pass
+                elif alive_neighbors >= 4:
+                    self.alive = False
+                    self.button["bg"] = "white"
+            elif self.alive == False:
+                if alive_neighbors == 3:
+                    self.alive = True
+                    self.button["bg"] = "black"
+                else: pass

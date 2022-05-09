@@ -6,7 +6,6 @@ import game_cell as gc
 
 game_cell = gc.GameCell
 
-
 def program_start():
     """Greets user on start up and creates GUI main window and game grid, and sets all the 'cells' to 'dead'."""
     print("\nWelcome to the Game of Life!\n")
@@ -14,11 +13,9 @@ def program_start():
     gui = tk.Tk()
     gui.title("Game of Life")
     gui.geometry("1920x1080")
-    # Grid settings
+    # Main Program
     game_cell.set_grid()
     # Button settings
-    seed_button = tk.Button(gui, text="Seed", width=25)
-    seed_button.place(x=300, y=950)
     start_button = tk.Button(gui, text="Start", width=25, command=lambda: game_cell.start_generations)
     start_button.place(x=600, y=950)
     stop_button = tk.Button(gui, text="Stop", width=25)
@@ -29,13 +26,7 @@ def program_start():
 
 
 def main():
-    running = True
     program_start()
-    # while running:
-    #     gd.reset_grid()
-    #     gd.set_seed()
-    #     generation_start()
-
 
 if __name__ == "__main__":
     main()
