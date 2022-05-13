@@ -40,7 +40,8 @@ def update_grid():
     global running
     if running:
         gc.GameCell.get_neighbor_status(game_grid_list, game_grid_dict)
-        gc.GameCell.new_generation(game_grid_list)
+        print(game_grid_list[0].alive_neighbors)
+        # gc.GameCell.new_generation(game_grid_list)
     gui.after(20, update_grid)
 
 def main():
