@@ -36,41 +36,50 @@ class GameCell:
             self.alive = False
             self.button["bg"] = "white"
 
-    # def start_generations(running, game_cell):
-    #     if not running:
-    #         print("test")
-    #     elif running:
-    #         game_cell.get_neighbor_status(game_cell, game_grid_list, game_grid_dict)
-    #         game_cell.new_generation(game_cell, game_grid_list)
-    
     @staticmethod
     def get_neighbor_status(game_grid_list, game_grid_dict):
         """For each cell in game_cell_list, checks its neighboring cells to determine if its alive then increments alive_neighbors if so, then calls new_generation() method"""
         for game_cell in game_grid_list:
             game_cell.alive_neighbors = 0
             """North-West Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num - 1}"] == True:
+            if game_cell.col_num - 1 < 0 or game_cell.row_num - 1 < 0:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num - 1}"] == True:
                 game_cell.alive_neighbors += 1
             """North Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num - 1}"] == True:
+            if game_cell.row_num - 1 < 0:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num - 1}"] == True:
                 game_cell.alive_neighbors += 1
             """North-East Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num - 1}"] == True:
+            if game_cell.col_num + 2 > GameCell.max_col or game_cell.row_num - 1 < 0:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num - 1}"] == True:
                 game_cell.alive_neighbors += 1
             """West Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num}"] == True:
+            if game_cell.col_num - 1 < 0:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num}"] == True:
                 game_cell.alive_neighbors += 1
             """East Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num}"] == True:
+            if game_cell.col_num + 2 > GameCell.max_col:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num}"] == True:
                 game_cell.alive_neighbors += 1
             """South-West Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num + 1}"] == True:
+            if game_cell.col_num - 1 < 0 or game_cell.row_num + 2 > GameCell.max_row:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num + 1}"] == True:
                 game_cell.alive_neighbors += 1
             """South Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num + 1}"] == True:
+            if game_cell.row_num + 2 >= GameCell.max_row:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num + 1}"] == True:
                 game_cell.alive_neighbors += 1
             """South-East Neighbor"""
-            if game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num + 1}"] == True:
+            if game_cell.col_num + 2 > GameCell.max_col or game_cell.row_num + 2 > GameCell.max_row:
+                pass
+            elif game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num + 1}"] == True:
                 game_cell.alive_neighbors += 1
 
     @staticmethod

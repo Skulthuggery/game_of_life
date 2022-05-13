@@ -23,7 +23,6 @@ def program_start(gui, game_grid_list, game_grid_dict):
     set_up_window(gui)
     set_up_buttons(gui)
     gc.GameCell.set_grid(game_grid_list, game_grid_dict)
-    # game_cell.start_generations(running, game_cell)
 
 def set_up_window(gui):
     gui.title("Game of Life")
@@ -42,7 +41,6 @@ def update_grid():
     if running:
         gc.GameCell.get_neighbor_status(game_grid_list, game_grid_dict)
         gc.GameCell.new_generation(game_grid_list)
-    print("test")    
     gui.after(20, update_grid)
 
 def main():
