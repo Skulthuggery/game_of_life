@@ -1,22 +1,28 @@
 # Recreating Conway's Game of Life
 
 import tkinter as tk
+from turtle import update
 
 import game_cell as gc
 
+gui = tk.Tk()
+running = False
+game_grid_list = []
+game_grid_dict = {}
 
 def start_running():
+    global running
     running = True
 
-
 def stop_running(): 
+    global running
     running = False
 
-def program_start(gui, game_cell, game_grid_list, game_grid_dict):
+def program_start(gui, game_grid_list, game_grid_dict):
     """Greets user on start up and creates GUI main window and game grid, and sets all the 'cells' to 'dead'."""
     set_up_window(gui)
     set_up_buttons(gui)
-    game_cell.set_grid(game_grid_list, game_grid_dict)
+    gc.GameCell.set_grid(game_grid_list, game_grid_dict)
     # game_cell.start_generations(running, game_cell)
 
 def set_up_window(gui):
@@ -31,19 +37,17 @@ def set_up_buttons(gui):
     quit_button = tk.Button(gui, text="Quit", width=25, command=gui.destroy)
     quit_button.place(x=1200, y=950)
 
-def main():
-    gui = tk.Tk()
-    running = False
-    game_cell = gc.GameCell
-    game_grid_list = []
-    game_grid_dict = {}
-    program_start(gui, game_cell, game_grid_list, game_grid_dict)
-    # if not running:
-    #     pass
-    # else:
-    game_cell.get_neighbor_status(game_cell, game_grid_list, game_grid_dict)
-    game_cell.new_generation(game_cell, game_grid_list)
+def update_grid():
+    global running
+    if running:
+        gc.GameCell.get_neighbor_status(game_grid_list, game_grid_dict)
+        gc.GameCell.new_generation(game_grid_list)
+    print("test")    
+    gui.after(20, update_grid)
 
+def main():
+    program_start(gui, game_grid_list, game_grid_dict)
+    gui.after(20, update_grid)
     gui.mainloop()
 
 if __name__ == "__main__":
