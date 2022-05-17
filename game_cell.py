@@ -41,46 +41,71 @@ class GameCell:
         """For each cell in game_cell_list, checks its neighboring cells to determine if its alive then increments alive_neighbors if so, then calls new_generation() method"""
         for game_cell in game_grid_list:
             game_cell.alive_neighbors = 0
-            """North-West Neighbor"""
-            if game_cell.col_num - 1 < 0 or game_cell.row_num - 1 < 0:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num - 1}"] == True:
-                game_cell.alive_neighbors += 1
-            """North Neighbor"""
-            if game_cell.row_num - 1 < 0:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num - 1}"] == True:
-                game_cell.alive_neighbors += 1
-            """North-East Neighbor"""
-            if game_cell.col_num + 2 > GameCell.max_col or game_cell.row_num - 1 < 0:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num - 1}"] == True:
-                game_cell.alive_neighbors += 1
-            """West Neighbor"""
-            if game_cell.col_num - 1 < 0:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num}"] == True:
-                game_cell.alive_neighbors += 1
-            """East Neighbor"""
-            if game_cell.col_num + 2 > GameCell.max_col:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num}"] == True:
-                game_cell.alive_neighbors += 1
-            """South-West Neighbor"""
-            if game_cell.col_num - 1 < 0 or game_cell.row_num + 2 > GameCell.max_row:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num - 1}/{game_cell.row_num + 1}"] == True:
-                game_cell.alive_neighbors += 1
-            """South Neighbor"""
-            if game_cell.row_num + 2 >= GameCell.max_row:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num}/{game_cell.row_num + 1}"] == True:
-                game_cell.alive_neighbors += 1
-            """South-East Neighbor"""
-            if game_cell.col_num + 2 > GameCell.max_col or game_cell.row_num + 2 > GameCell.max_row:
-                pass
-            elif game_grid_dict[f"{game_cell.col_num + 1}/{game_cell.row_num + 1}"] == True:
-                game_cell.alive_neighbors += 1
+            game_cell.check_north_west(game_grid_dict)
+            game_cell.check_north(game_grid_dict)
+            game_cell.check_north_east(game_grid_dict)
+            game_cell.check_west(game_grid_dict)
+            game_cell.check_east(game_grid_dict)
+            game_cell.check_south_west(game_grid_dict)
+            game_cell.check_south(game_grid_dict)
+            game_cell.check_south_east(game_grid_dict)
+            print(f"{game_cell.alive_neighbors}")
+
+    def check_north_west(self, game_grid_dict):
+        """North-West Neighbor"""
+        if (self.col_num - 1) < 0 or (self.row_num - 1) < 0:
+            pass
+        elif game_grid_dict[f"{self.col_num - 1}/{self.row_num - 1}"] == True:
+            self.alive_neighbors += 1
+
+    def check_north(self, game_grid_dict):
+        """North Neighbor"""
+        if (self.row_num - 1) < 0:
+            pass
+        elif game_grid_dict[f"{self.col_num}/{self.row_num - 1}"] == True:
+            self.alive_neighbors += 1
+
+    def check_north_east(self, game_grid_dict):
+        """North-East Neighbor"""
+        if (self.col_num + 2) > GameCell.max_col or (self.row_num - 1) < 0:
+            pass
+        elif game_grid_dict[f"{self.col_num + 1}/{self.row_num - 1}"] == True:
+            self.alive_neighbors += 1
+
+    def check_west(self, game_grid_dict):
+        """West Neighbor"""
+        if (self.col_num - 1) < 0:
+            pass
+        elif game_grid_dict[f"{self.col_num - 1}/{self.row_num}"] == True:
+            self.alive_neighbors += 1
+
+    def check_east(self, game_grid_dict):
+        """East Neighbor"""
+        if (self.col_num + 2) > GameCell.max_col:
+            pass
+        elif game_grid_dict[f"{self.col_num + 1}/{self.row_num}"] == True:
+            self.alive_neighbors += 1
+
+    def check_south_west(self, game_grid_dict):
+        """South-West Neighbor"""
+        if (self.col_num - 1) < 0 or (self.row_num + 2) > GameCell.max_row:
+            pass
+        elif game_grid_dict[f"{self.col_num - 1}/{self.row_num + 1}"] == True:
+            self.alive_neighbors += 1
+
+    def check_south(self, game_grid_dict):
+        """South Neighbor"""
+        if (self.row_num + 2) >= GameCell.max_row:
+            pass
+        elif game_grid_dict[f"{self.col_num}/{self.row_num + 1}"] == True:
+            self.alive_neighbors += 1
+
+    def check_south_east(self, game_grid_dict):
+        """South-East Neighbor"""
+        if (self.col_num + 2) > GameCell.max_col or (self.row_num + 2) > GameCell.max_row:
+            pass
+        elif game_grid_dict[f"{self.col_num + 1}/{self.row_num + 1}"] == True:
+            self.alive_neighbors += 1
 
     @staticmethod
     def new_generation(game_grid_list):
