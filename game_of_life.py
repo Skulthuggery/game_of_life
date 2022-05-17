@@ -1,7 +1,6 @@
 # Recreating Conway's Game of Life
 
 import tkinter as tk
-from turtle import update
 
 import game_cell as gc
 
@@ -40,8 +39,7 @@ def update_grid():
     global running
     if running:
         gc.GameCell.get_neighbor_status(game_grid_list, game_grid_dict)
-        print(game_grid_list[0].alive_neighbors)
-        # gc.GameCell.new_generation(game_grid_list)
+        gc.GameCell.new_generation(game_grid_list)
     gui.after(20, update_grid)
 
 def main():
