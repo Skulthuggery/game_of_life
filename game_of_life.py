@@ -6,7 +6,6 @@ import game_cell as gc
 
 gui = tk.Tk()
 running = False
-game_grid_list = []
 game_grid_dict = {}
 
 def start_running():
@@ -17,11 +16,11 @@ def stop_running():
     global running
     running = False
 
-def program_start(gui, game_grid_list, game_grid_dict):
+def program_start(gui, game_grid_dict):
     """Greets user on start up and creates GUI main window and game grid, and sets all the 'cells' to 'dead'."""
     set_up_window(gui)
     set_up_buttons(gui)
-    gc.GameCell.set_grid(game_grid_list, game_grid_dict)
+    gc.GameCell.set_grid(game_grid_dict)
 
 def set_up_window(gui):
     gui.title("Game of Life")
@@ -38,12 +37,12 @@ def set_up_buttons(gui):
 def update_grid():
     global running
     if running:
-        gc.GameCell.get_neighbor_status(game_grid_list, game_grid_dict)
-        gc.GameCell.new_generation(game_grid_list)
-    gui.after(20, update_grid)
+        gc.GameCell.get_neighbor_status(game_grid_dict)
+        gc.GameCell.new_generation(game_grid_dict)
+    gui.after(200, update_grid)
 
 def main():
-    program_start(gui, game_grid_list, game_grid_dict)
+    program_start(gui, game_grid_dict)
     gui.after(20, update_grid)
     gui.mainloop()
 
