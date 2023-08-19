@@ -1,3 +1,3 @@
 # game_of_life
 
-Remaking Conwya's Game of Life for practice.
+Remaking Conway's Game of Life for practice.
